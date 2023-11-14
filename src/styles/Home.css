@@ -1,0 +1,40 @@
+body {
+    margin: 0 auto;
+}
+
+.body {
+    display: flex;
+}
+
+.app {
+    display: flex;
+    padding: 50px;
+    flex-direction: column;
+}
+
+.app h1 {
+    display: flex;
+    font-family: 'Saira Condensed';
+    font-weight: 100;
+}
+
+.action-button {
+    display: flex;
+    width: 240px;
+    height: 40px;
+    margin: 7px 0;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    color:#0059F4;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 3px 4px #808080;
+    transition: transform 0.3s ease-in;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    border: 1px solid;
+    border-color: #0059F4;
+}

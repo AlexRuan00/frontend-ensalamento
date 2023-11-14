@@ -1,0 +1,39 @@
+
+
+ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+li {
+    display: flex;
+    background-color: #55BAFF;
+    width: 400px;
+    height: 30px;
+    margin: 3px;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 10px;
+    text-decoration: underline;
+    font-family: 'Saira Condensed';
+    cursor: pointer;
+}
+
+.list-item-row {
+    display: flex;
+}
+
+.list-item-box {
+    width: 30px;
+    height: 30px;
+    background-color: #55BAFF;
+    align-self: center;
+    border-radius: 7px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.update-icon {
+    padding: 7px;
+}

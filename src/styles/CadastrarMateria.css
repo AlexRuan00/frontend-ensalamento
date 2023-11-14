@@ -1,0 +1,69 @@
+.body-materia {
+    display: flex;
+}
+
+.app-materia {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    width: 100vw;
+}
+
+.app-materia h1 {
+    font-family: 'Saira Condensed';
+    font-weight: 100;
+}
+
+.cadastrar-materia-body {
+    display: flex;
+}
+
+.register-button-materia {
+    display: flex;
+    width: 100px;
+    height: 40px;
+    margin: 7px 0;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    color:#0059F4;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 3px 4px #808080;
+    transition: transform 0.3s ease-in;
+    cursor: pointer;
+}
+
+.register-button-materia:hover {
+    border: 1px solid;
+    border-color: #0059F4;
+}
+
+.register-button-confirm {
+    display: flex;
+    width: 200px;
+    height: 50px;
+    margin: 7px 0;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    color:#0059F4;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 3px 4px #808080;
+    transition: transform 0.3s ease-in;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 30px 0;
+}
+
+.register-button-confirm:hover {
+    border: 1px solid;
+    color: #07cb00;
+    border-color: #07cb00;
+}
+
+.register-content {
+    display: flex;
+    justify-content: center;
+}
