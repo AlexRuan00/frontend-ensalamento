@@ -1,6 +1,8 @@
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import axios from 'axios';
 
 import '../styles/CadastrarMateria.css'
 
@@ -12,6 +14,7 @@ import ConteudoComponent from '../components/ConteudoComponent';
 
 
 export default function CadastrarMateria() {
+    const [dados, setDados] = useState([]);
 
     // Defina um estado para controlar a exibição do modal
     const [isModalOpen, setModalOpen] = useState(false);
@@ -26,15 +29,18 @@ export default function CadastrarMateria() {
         setModalOpen(false);
     }
 
-    const prof = [
-        {
-            nome: 'Lógica de Programação'
-        },
-        {
-            nome: 'Fundamentos da Eletrônica Aplicada',
-        }
-       
-    ]
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/disciplina');
+            setDados(response.data);
+          } catch (error) {
+            console.error('Erro ao buscar dados da API:', error);
+          }
+        };
+    
+        fetchData();
+      }, [closeModal]);
 
 
     return (
@@ -48,8 +54,8 @@ export default function CadastrarMateria() {
                     <button className='register-button-materia' onClick={openModal}>Cadastrar</button>
                 </div>
                 
-                {prof.map(item => (
-                    <ConteudoComponent nome={item.nome} />
+                {dados.map(item => (
+                    <ConteudoComponent nome={item.nome_materia} id={item.id_materia} entidade={'matéria'}/>
                 ))}
                 
                 <div className='register-content'>

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
+
+import axios from 'axios';
 
 import '../styles/CadastrarProfessor.css'
 
@@ -11,6 +13,8 @@ export default function CadastrarProfessor() {
     // Defina um estado para controlar a exibição do modal
     const [isModalOpen, setModalOpen] = useState(false);
 
+    const [dados, setDados] = useState([]);
+
     // Função para abrir o modal
     const openModal = () => {
         setModalOpen(true);
@@ -21,21 +25,18 @@ export default function CadastrarProfessor() {
         setModalOpen(false);
     }
 
-    const prof = [
-        {
-            nome: 'Rodrigo'
-        },
-        {
-            nome: 'Thaise',
-        },
-        {
-            nome: 'Ruan',
-        },
-        {
-            nome: 'Thaise',
-        }
-       
-    ]
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/professor');
+            setDados(response.data);
+          } catch (error) {
+            console.error('Erro ao buscar dados da API:', error);
+          }
+        };
+    
+        fetchData();
+      }, [dados]);
 
     return (
         <div className='cadastrar-professor-body'>
@@ -48,8 +49,8 @@ export default function CadastrarProfessor() {
                     <button className='register-button-materia' onClick={openModal}>Cadastrar</button>
                 </div>
 
-                {prof.map(item => (
-                    <ConteudoComponent nome={item.nome} />
+                {dados.map(item => (
+                    <ConteudoComponent nome={item.nome_professor} id={item.id_professor} entidade={'professor'}/>
                 ))}
 
                 <div className='register-content'>
