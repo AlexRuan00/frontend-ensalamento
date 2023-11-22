@@ -37,3 +37,13 @@ li {
 .update-icon {
     padding: 7px;
 }
+
+.infos-card {
+    display: flex;
+    background-color: #55BAFF;
+    margin: 3px;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 10px;
+    background-color: bisque;
+}
