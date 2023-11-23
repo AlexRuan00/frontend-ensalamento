@@ -4,8 +4,9 @@
 
 .app-professor {
     display: flex;
-    padding: 50px;
     flex-direction: column;
+    padding: 50px;
+    width: 100vw;
 }
 
 .app-professor h1 {

@@ -6,6 +6,8 @@ import '../styles/CadastrarProfessor.css'
 
 import Navbar from '../components/Navbar'
 
+import CadastrarProfessorComponent from '../components/CadastrarProfessorComponent';
+
 import ConteudoComponent from '../components/ConteudoComponent';
 
 export default function CadastrarProfessor() {
@@ -55,7 +57,7 @@ export default function CadastrarProfessor() {
 
                 <div className='register-content'>
                     {isModalOpen && (
-                        <CadastrarMateriaComponent isModalOpen={isModalOpen} closeModal={closeModal} />
+                        <CadastrarProfessorComponent isModalOpen={isModalOpen} closeModal={closeModal} />
                     )}
                 </div>
             </div>
