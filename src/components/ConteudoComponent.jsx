@@ -1,18 +1,27 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/ConteudoMateria.css';
 import arrow from '../assets/arrow-right.png';
 import updateIcon from '../assets/update.png';
 import deleteIcon from '../assets/delete.png';
 
-export default function ConteudoComponent({ nome, id, entidade }) {
+export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisponiveis }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [entity, setEntity] = useState(false);
+
+    useEffect(() => {
+        if (entidade === 'professor') {
+            setEntity(true)
+        }
+    }, []);
+
+
     const toggleInfo = () => {
         setIsOpen(!isOpen);
     };
 
-    const arrayteste = ['teste1', 'teste2', 'teste3']
+    const arrayteste = ['teste1']
 
     const deleteData = async () => {
         try {
@@ -52,12 +61,25 @@ export default function ConteudoComponent({ nome, id, entidade }) {
                 </div>
             </ul>
             {
-                isOpen && (
-                    <ul className='infos-card'>
-                        {arrayteste.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
+                isOpen && !entity && (
+                    <div className='infos-card-materia'>
+                        <p>FASE: </p>
+                        <p> {idFase} </p>
+                    </div>
+                )
+            }
+
+            {
+                isOpen && entity && (
+                    <div className='infos-card-professor'>
+                        <p>DISCÍPLINA(s)</p>
+                        <div className='infos-card-professor-disp'>
+                            <p>DISPONIBILIDADE:</p>
+                            {diasDisponiveis.map(item => (
+                                <span>{item}</span>
+                            ))}
+                        </div>
+                    </div>
                 )
             }
         </div>

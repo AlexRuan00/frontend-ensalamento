@@ -6,7 +6,7 @@ ul {
     margin: 0px;
 }
 
-li {
+.list-item-row li {
     display: flex;
     background-color: #55BAFF;
     width: 400px;
@@ -38,12 +38,47 @@ li {
     padding: 7px;
 }
 
-.infos-card {
+.infos-card-materia {
     display: flex;
-    background-color: #55BAFF;
-    margin: 3px;
+    width: 340px;
+    background-color: #D9D9D9;
+    margin: 0 70px;
+    border-radius: 8px;
+    padding: 15px;
+    font-family: 'Saira Condensed';
+    font-size: 18px;
+}
+.infos-card-materia p {
+    margin: 0 3px;
+}
+
+.infos-card-professor {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    background-color: #D9D9D9;
+    margin: 0 70px;
+    border-radius: 8px;
+    padding: 15px;
+    font-family: 'Saira Condensed';
+    font-size: 18px;
+}
+
+.infos-card-professor-disp {
+    display: flex;
     align-items: center;
-    border-radius: 10px;
-    padding: 0 10px;
-    background-color: bisque;
+}
+
+.infos-card-professor-disp span {
+    background-color: #55BAFF;
+    padding: 0 15px;
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+
+.component-card {
+    display: flex;
+    flex-direction: column;
+    
 }

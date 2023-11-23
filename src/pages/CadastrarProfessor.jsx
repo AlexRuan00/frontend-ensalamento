@@ -50,7 +50,7 @@ export default function CadastrarProfessor() {
                 </div>
 
                 {dados.map(item => (
-                    <ConteudoComponent nome={item.nome_professor} id={item.id_professor} entidade={'professor'}/>
+                    <ConteudoComponent nome={item.nome_professor} id={item.id_professor} diasDisponiveis={item.dias_disponiveis} entidade={'professor'}/>
                 ))}
 
                 <div className='register-content'>
