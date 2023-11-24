@@ -1,6 +1,6 @@
 .modal-professor {
     display: flex;
-    width: 500px;
+    width: 700px;
     height: 500px;
     background-color: #FFFFFF;
     border-radius: 5px;
@@ -10,11 +10,35 @@
     top: 150px;
 }
 
+.modal-professor-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.add-fase {
+    width: 100px;
+    height: 30px;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 3px 4px #808080;
+    transition: transform 0.3s ease-in;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: #FFF;
+    color: #0059F4;
+    border-radius: 10px;
+}
+
+.add-fase:hover {
+    border: 1px solid;
+}
+
 .modal-professor-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 500px;
+    width: 700px;
     height: 60px;
     justify-content: center;
     border-bottom: 1px solid #B8B8B8;
@@ -40,7 +64,7 @@
 .modal-professor-content-professor {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding: 0 90px;
 }
 
 .modal-label-professor {

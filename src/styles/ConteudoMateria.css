@@ -9,7 +9,7 @@ ul {
 .list-item-row li {
     display: flex;
     background-color: #55BAFF;
-    width: 400px;
+    width: 600px;
     height: 30px;
     margin: 3px;
     align-items: center;
@@ -40,28 +40,39 @@ ul {
 
 .infos-card-materia {
     display: flex;
-    width: 340px;
+    width: 535px;
     background-color: #D9D9D9;
     margin: 0 70px;
     border-radius: 8px;
-    padding: 15px;
+    padding: 10px;
     font-family: 'Saira Condensed';
     font-size: 18px;
 }
 .infos-card-materia p {
     margin: 0 3px;
+    border-bottom: 1px solid #A9A9A9;
 }
+.infos-card-materia span {
+    margin: 0 3px;
+}
+
+
+
 
 .infos-card-professor {
     display: flex;
     flex-direction: column;
-    width: 340px;
+    width: 535px;
     background-color: #D9D9D9;
     margin: 0 70px;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 15px;
     font-family: 'Saira Condensed';
     font-size: 18px;
+}
+
+.infos-card-professor p {
+    border-bottom: 1px solid #A9A9A9;
 }
 
 .infos-card-professor-disp {
@@ -74,6 +85,8 @@ ul {
     padding: 0 15px;
     border-radius: 20px;
     margin: 0 5px;
+    font-weight: light;
+    font-size: 15px;
 }
 
 

@@ -64,7 +64,7 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
                 isOpen && !entity && (
                     <div className='infos-card-materia'>
                         <p>FASE: </p>
-                        <p> {idFase} </p>
+                        <span> {idFase} </span>
                     </div>
                 )
             }

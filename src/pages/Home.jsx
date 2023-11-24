@@ -1,6 +1,7 @@
 import '../styles/Home.css'
 
 import Navbar from '../components/Navbar'
+import QuadroDeHorariosComponent from '../components/QuadroDeHorariosComponent'
 
 export default function Home() {
     return (
@@ -17,6 +18,7 @@ export default function Home() {
                     <button className='action-button'>Excluir Ensalamento da Turma</button>
                 </div>
             </div>
+            <QuadroDeHorariosComponent />
         </div>
     )
 }

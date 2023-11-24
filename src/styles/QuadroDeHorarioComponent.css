@@ -1,0 +1,22 @@
+.quadro {
+    display: flex;
+    background-color: #FFFFFF;
+    width: 700px;
+    height: 500px;
+    margin: 60px;
+    border-radius: 10px;
+    border: 1px stroke #B8B8B8;
+}
+
+.quadro h1 {
+    font-family: 'Saira Condensed';
+    font-size: 30px;
+    font-weight: normal;
+    width: 100%;
+    border-bottom: 1px solid #B8B8B8;
+    height: 50px;
+}
+
+.quadro-box {
+    
+}

@@ -39,13 +39,13 @@ export default function Navbar() {
                 <div className='label'>
                     <Link to={`/cadastrar-materia`}>
                         <img src={menuCadastrarMateriaIcon} alt='Cadastrar Professores' />
-                        {isModalOpen && <a>Cadastrar Professores</a>}
+                        {isModalOpen && <a>Cadastrar Matérias</a>}
                     </Link>
                 </div>
                 <div className='label'>
                     <Link to={`/cadastrar-professor`}>
                         <img src={menuCadastrarProfessorIcon} alt='Cadastrar Matérias' />
-                        {isModalOpen && <a>Cadastrar Matérias</a>}
+                        {isModalOpen && <a>Cadastrar Professores</a>}
                     </Link>
                 </div>
             </div>
