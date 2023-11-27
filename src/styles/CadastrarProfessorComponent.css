@@ -1,6 +1,6 @@
 .modal-professor {
     display: flex;
-    width: 700px;
+    width: 500px;
     height: 500px;
     background-color: #FFFFFF;
     border-radius: 5px;
@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 700px;
+    width: 500px;
     height: 60px;
     justify-content: center;
     border-bottom: 1px solid #B8B8B8;
@@ -64,7 +64,7 @@
 .modal-professor-content-professor {
     display: flex;
     flex-direction: column;
-    padding: 0 90px;
+    padding: 0 130px;
 }
 
 .modal-label-professor {

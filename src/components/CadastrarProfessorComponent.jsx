@@ -63,36 +63,19 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
                             <img className='modal-professor-close-icon' src={menuClose} onClick={closeModal} />
                         </div>
                         <div className='modal-professor-content-professor'>
-                            <div className='modal-professor-grid'>
-                                <div className='modal-label-professor'>
-                                    <a>NOME:</a>
-                                    <input placeholder='Ex: Rodrigão' value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" />
-                                </div>
-                                <div className='modal-label-professor'>
-                                    <a>CADASTRAR FASE:</a>
-                                    <div className='modal-professor-grid'>
-                                        <input placeholder='Ex: Primeira Fase' value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" />
-                                        <button className='add-fase'>CADASTRAR</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='modal-professor-grid'>
-                                <div className='modal-label-professor'>
-                                    <a>MATÉRIAS:</a>
-                                    <Select
-                                        className='professor-select'
-                                        options={materias}
-                                    />
-                                </div>
-                                <div className='modal-label-professor'>
-                                    <a>FASES:</a>
-                                    <Select
-                                        className='professor-select'
-                                        options={fases}
-                                    />
-                                </div>
+
+                            <div className='modal-label-professor'>
+                                <a>NOME:</a>
+                                <input placeholder='Ex: Rodrigão' value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" />
                             </div>
 
+                            <div className='modal-label-professor'>
+                                <a>MATÉRIAS:</a>
+                                <Select
+                                    className='professor-select'
+                                    options={materias}
+                                />
+                            </div>
                             <div className='modal-label-professor'>
                                 <a>DIAS DISPONÍVEIS:</a>
                                 <Select
@@ -103,7 +86,6 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
                                     options={dias}
                                 />
                             </div>
-
                             <div>
                                 <button className='register-button-confirm' onClick={registerProf}>CADASTRAR</button>
                             </div>
