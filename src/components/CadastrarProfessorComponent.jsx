@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
 
 
@@ -12,14 +11,42 @@ import '../styles/CadastrarProfessorComponent.css'
 
 import menuClose from '../assets/close-figma.png'
 
+
 export default function CadastrarProfessorComponent({ isModalOpen, closeModal }) {
     const [inputValue, setInputValue] = useState('');
+    const [materias, setMateria] = useState([]);
+    const [inputMat, setInputMat] = useState(null);
+    const [diasSemana, setDiasSemana] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://backend-ensalamento.onrender.com/disciplina');
+                distribuirMaterias(response.data);
+            } catch (error) {
+                console.error('Erro ao buscar dados da API:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const distribuirMaterias = (materiasApi) => {
+        let arrayMaterias = []
+        materiasApi.forEach(e => {
+            arrayMaterias.push({ value: e.id_materia, label: e.nome_materia })
+        });
+        setMateria(arrayMaterias)
+    }
 
     const registerProf = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/disciplina', {
+            const response = await axios.post('https://backend-ensalamento.onrender.com/professor', {
                 nome: inputValue,
-                idFase: 1
+                dias: diasSemana,
+                quantidadeDias: 3,
+                idMateria: inputMat,
+               
             });
 
             console.log('Resposta da API:', response.data);
@@ -36,21 +63,37 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
 
     };
 
-    const materias = [
-        { value: 'Lógica de Programação', label: 'Lógica de Programação' },
-        { value: 'Eletrônica', label: 'Eletrônica' },
-        { value: 'Teste de Sistemas', label: 'Teste de Sistemas' }
-    ]
+    const changeInputMat = (selectedOption) => {
+        setInputMat(selectedOption.value);
+    };
 
-    const fases = [
-        { value: 'Primeira Fase', label: 'Primeira Fase' },
-        { value: 'Segunda Fase', label: 'Segunda Fase' },
-        { value: 'Terceira Fase', label: 'Terceira Fase' }
-    ]
+
+    const changeInputDays = (selectedOption) => {
+        let arrayDays = [];
+        selectedOption.forEach(e => {
+            arrayDays.push(e.value);
+        });
+        setDiasSemana(arrayDays)
+    };
+
+    // const materias = [
+    //     { value: 'Lógica de Programação', label: 'Lógica de Programação' },
+    //     { value: 'Eletrônica', label: 'Eletrônica' },
+    //     { value: 'Teste de Sistemas', label: 'Teste de Sistemas' }
+    // ]
+
+    // const fases = [
+    //     { value: 'Primeira Fase', label: 'Primeira Fase' },
+    //     { value: 'Segunda Fase', label: 'Segunda Fase' },
+    //     { value: 'Terceira Fase', label: 'Terceira Fase' }
+    // ]
 
     const dias = [
         { value: 'Segunda', label: 'Segunda' },
         { value: 'Terça', label: 'Terça' },
+        { value: 'Quarta', label: 'Quarta' },
+        { value: 'Quinta', label: 'Quinta' },
+        { value: 'Sexta', label: 'Sexta' },
     ]
 
     return (
@@ -74,6 +117,7 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
                                 <Select
                                     className='professor-select'
                                     options={materias}
+                                    onChange={changeInputMat}
                                 />
                             </div>
                             <div className='modal-label-professor'>
@@ -84,6 +128,7 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
                                     components={animatedComponents}
                                     isMulti
                                     options={dias}
+                                    onChange={changeInputDays}
                                 />
                             </div>
                             <div>

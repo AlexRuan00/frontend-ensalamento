@@ -32,7 +32,7 @@ export default function CadastrarMateria() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:3000/disciplina');
+            const response = await axios.get('https://backend-ensalamento.onrender.com/disciplina');
             setDados(response.data);
           } catch (error) {
             console.error('Erro ao buscar dados da API:', error);

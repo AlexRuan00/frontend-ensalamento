@@ -6,14 +6,16 @@ import arrow from '../assets/arrow-right.png';
 import updateIcon from '../assets/update.png';
 import deleteIcon from '../assets/delete.png';
 
-export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisponiveis }) {
+export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisponiveis, materia }) {
     const [isOpen, setIsOpen] = useState(false);
     const [entity, setEntity] = useState(false);
-
+    const [fase, setFase] = useState('');
     useEffect(() => {
         if (entidade === 'professor') {
             setEntity(true)
         }
+
+        searchFase()
     }, []);
 
 
@@ -26,10 +28,10 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
     const deleteData = async () => {
         try {
             if (entidade === 'matéria') {
-                const response = await axios.delete(`http://localhost:3000/disciplina/${id}`);
+                const response = await axios.delete(`https://backend-ensalamento.onrender.com/disciplina/${id}`);
             }
             if (entidade === 'professor') {
-                const response = await axios.delete(`http://localhost:3000/professor/${id}`);
+                const response = await axios.delete(`https://backend-ensalamento.onrender.com/professor/${id}`);
             }
 
 
@@ -38,6 +40,24 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
             console.error('Erro na solicitação para a API:', error);
         }
 
+    };
+
+
+    const searchFase = async () => {
+        try {
+            const response = await axios.get(`https://backend-ensalamento.onrender.com/fase`);
+            response.data.forEach(e => {
+                if(e.id_fase === idFase){
+                    setFase(e.nome_fase);
+                }
+            });
+            //console.log('Resposta da API:', response.data);
+        } catch (error) {
+
+            console.error('Erro na solicitação para a API:', error);
+        }
+        
+      
     };
 
 
@@ -64,7 +84,7 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
                 isOpen && !entity && (
                     <div className='infos-card-materia'>
                         <p>FASE: </p>
-                        <span> {idFase} </span>
+                        <span> {fase} </span>
                     </div>
                 )
             }
@@ -72,7 +92,10 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
             {
                 isOpen && entity && (
                     <div className='infos-card-professor'>
-                        <p>DISCÍPLINA(s)</p>
+                        <div className='infos-card-professor-disp'>
+                            <p>DISCÍPLINA:</p>
+                            <span>{materia}</span>
+                        </div>
                         <div className='infos-card-professor-disp'>
                             <p>DISPONIBILIDADE:</p>
                             {diasDisponiveis.map(item => (
