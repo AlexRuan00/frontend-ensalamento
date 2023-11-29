@@ -17,6 +17,7 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
     const [materias, setMateria] = useState([]);
     const [inputMat, setInputMat] = useState(null);
     const [diasSemana, setDiasSemana] = useState([])
+    const [diasN, setDiasM] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,7 +45,7 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
             const response = await axios.post('https://backend-ensalamento.onrender.com/professor', {
                 nome: inputValue,
                 dias: diasSemana,
-                quantidadeDias: 3,
+                quantidadeDias: diasN,
                 idMateria: inputMat,
                
             });
@@ -76,8 +77,8 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
         setDiasSemana(arrayDays)
     };
 
-    const handleSelectChange = (selectedOption) => {
-        setInputFaseValue(selectedOption.value);
+    const defineDias = (selectedOption) => {
+        setDiasM(selectedOption.value);
     };
 
     
@@ -138,7 +139,7 @@ export default function CadastrarProfessorComponent({ isModalOpen, closeModal })
                                 <Select
                                     className='professor-select'
                                     options={quantidadedias}
-                                    onChange={handleSelectChange}
+                                    onChange={defineDias}
                                 />
                             </div>
                             <div>

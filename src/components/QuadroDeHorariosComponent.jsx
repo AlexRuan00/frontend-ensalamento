@@ -1,9 +1,58 @@
-
 import '../styles/QuadroDeHorarioComponent.css'
+import React, { useState, useEffect } from 'react';
 
-export default function QuadroDeHorariosComponent() {
+const teste = [
+    {
+        dia: "Segunda",
+        professor: "Thayse",
+        materia: "Lógica de programação"
+    },
+    {
+        dia: "Quarta",
+        professor: "Thayse",
+        materia: "Lógica de programação"
+    },
+    {
+        dia: "Quinta",
+        professor: "Thayse",
+        materia: "Lógica de programação"
+    },
+    {
+        dia: "Terça",
+        professor: "João",
+        materia: "Eletroeletrônica"
+    }
+]
 
+const teste2 = []
 
+export default function QuadroDeHorariosComponent(props) {
+    const [resultado, setResultado] = useState([]);
+    
+    const DiaComponent = ({ dia }) => {
+        let resultadoDoDia = teste2.find(item => item.dia === dia);
+        if (props.props && props.props.length > 0){
+             resultadoDoDia = props.props.find(item => item.dia === dia);
+        } 
+    //     if (props.props[0] == 0){
+    //         alert('Nenhum dado nessa fase')
+    //    } 
+        if (resultadoDoDia) {
+            return (
+                <div className="quadro-box">
+                    <span className='span-professor'>{resultadoDoDia.professor}</span>
+                    <span className='span-materia'>{resultadoDoDia.materia}</span>
+                </div>
+            );
+        } else {
+            return (
+                <div className="quadro-box">
+                    <span className='span-professor'></span>
+                    <span className='span-materia'></span>
+                </div>
+            );
+        }
+    };
 
     return (
         <div className='quadro'>
@@ -39,26 +88,11 @@ export default function QuadroDeHorariosComponent() {
                     <span className='span-professor'></span>
                     <span className='span-materia'></span>
                 </div>
-                <div className="quadro-box">
-                    <span className='span-professor'>Ruan</span>
-                    <span className='span-materia'>Desenvolvimento de Sistemas</span>
-                </div>
-                <div className="quadro-box">
-                    <span className='span-professor'>Rodrigo Farias</span>
-                    <span className='span-materia'>Teste de Sistemas</span>
-                </div>
-                <div className="quadro-box">
-                    <span className='span-professor'>Paulo</span>
-                    <span className='span-materia'>Desenvolvimento de Sistemas</span>
-                </div>
-                <div className="quadro-box">
-                    <span className='span-professor'>Paulo</span>
-                    <span className='span-materia'>Desenvolvimento de Sistemas</span>
-                </div>
-                <div className="quadro-box">
-                    <span className='span-professor'></span>
-                    <span className='span-materia'></span>
-                </div>
+                <DiaComponent dia="Segunda" />
+                <DiaComponent dia="Terça" />
+                <DiaComponent dia="Quarta" />
+                <DiaComponent dia="Quinta" />
+                <DiaComponent dia="Sexta" />
                 <div className="quadro-box-inferior-direito">
                     <span className='span-professor'></span>
                     <span className='span-materia'></span>

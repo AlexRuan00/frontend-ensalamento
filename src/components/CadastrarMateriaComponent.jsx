@@ -17,7 +17,7 @@ export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
     const [inputFaseValue, setInputFaseValue] = useState(null);
     const [novaFase, setNovaFase] = useState('');
     const [fases, setFases] = useState([]);
-
+    const [diasM, setDiasM] = useState(null);
 
 
     useEffect(() => {
@@ -45,7 +45,8 @@ export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
         try {
             const response = await axios.post('https://backend-ensalamento.onrender.com/disciplina', {
                 nome: inputValue,
-                idFase: inputFaseValue
+                idFase: inputFaseValue,
+                dias: diasM
             });
 
             console.log('Resposta da API:', response.data);
@@ -85,6 +86,9 @@ export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
         setInputFaseValue(selectedOption.value);
     };
 
+    const defineDias = (selectedOption) => {
+        setDiasM(selectedOption.value)
+    }
     // const materias = [
     //     { value: 'Lógica de Programação', label: 'Lógica de Programação' },
     //     { value: 'Eletrônica', label: 'Eletrônica' },
@@ -135,7 +139,7 @@ export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
                                 <Select
                                     className='professor-select'
                                     options={quantidadeDias}
-                                    onChange={handleSelectChange}
+                                    onChange={defineDias}
                                 />
                             </div>
                             <div>
