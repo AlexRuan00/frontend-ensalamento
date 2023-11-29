@@ -1,5 +1,6 @@
 body {
     margin: 0 auto;
+    overflow: hidden
 }
 
 .body {
@@ -37,4 +38,21 @@ body {
 .action-button:hover {
     border: 1px solid;
     border-color: #0059F4;
+}
+
+.fases {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+}
+
+.fases span {
+    font-family: 'Saira Condensed';
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.fases-select {
+    font-family: 'Saira Condensed';
+    margin: 10px 0;;
 }

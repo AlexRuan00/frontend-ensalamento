@@ -6,6 +6,9 @@ import arrow from '../assets/arrow-right.png';
 import updateIcon from '../assets/update.png';
 import deleteIcon from '../assets/delete.png';
 
+import AtualizarMateriaComponent from './AtualizarMateriaComponent';
+import AtualizarProfessorComponent from './AtualizarProfessorComponent';
+
 export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisponiveis, materia }) {
     const [isOpen, setIsOpen] = useState(false);
     const [entity, setEntity] = useState(false);
@@ -18,12 +21,24 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
         searchFase()
     }, []);
 
+    // Defina um estado para controlar a exibição do modal
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    // Função para abrir o modal
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
+    // Função para fechar o modal
+    const closeModal = () => {
+        setModalOpen(false);
+    }
 
     const toggleInfo = () => {
         setIsOpen(!isOpen);
     };
 
-    const arrayteste = ['teste1']
+    // const arrayteste = ['teste1']
 
     const deleteData = async () => {
         try {
@@ -47,7 +62,7 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
         try {
             const response = await axios.get(`https://backend-ensalamento.onrender.com/fase`);
             response.data.forEach(e => {
-                if(e.id_fase === idFase){
+                if (e.id_fase === idFase) {
                     setFase(e.nome_fase);
                 }
             });
@@ -56,8 +71,8 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
 
             console.error('Erro na solicitação para a API:', error);
         }
-        
-      
+
+
     };
 
 
@@ -73,13 +88,25 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
                     </li>
 
                     <div className='list-item-box'>
-                        <img className='update-icon' src={updateIcon} alt='Seta para a direita' />
+                        <img className='update-icon' src={updateIcon} alt='Seta para a direita' onClick={openModal} />
                     </div>
                     <div className='list-item-box'>
                         <img className='update-icon' src={deleteIcon} alt='Seta para a direita' onClick={deleteData} />
                     </div>
                 </div>
             </ul>
+            <div className='register-content'>
+                {
+                    isModalOpen && !entity && (
+                        <AtualizarMateriaComponent isModalOpen={isModalOpen} closeModal={closeModal} />
+                    )
+                }
+                {
+                    isModalOpen && entity && (
+                        <AtualizarProfessorComponent isModalOpen={isModalOpen} closeModal={closeModal} />
+                    )
+                }
+            </div>
             {
                 isOpen && !entity && (
                     <div className='infos-card-materia'>

@@ -12,13 +12,12 @@ import '../styles/CadastrarMateriaComponent.css'
 
 import menuClose from '../assets/close-figma.png'
 
-export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
+export default function AtualizarMateriaComponent({ isModalOpen, closeModal }) {
+
     const [inputValue, setInputValue] = useState('');
     const [inputFaseValue, setInputFaseValue] = useState(null);
     const [novaFase, setNovaFase] = useState('');
     const [fases, setFases] = useState([]);
-
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -62,35 +61,9 @@ export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
 
     };
 
-    const registerFase = async () => {
-        try {
-            const response = await axios.post('https://backend-ensalamento.onrender.com/fase', {
-                nome: novaFase,
-            });
-
-            console.log('Resposta da API:', response.data);
-
-
-            setNovaFase('');
-
-        } catch (error) {
-
-            console.error('Erro na solicitação para a API:', error);
-        }
-        closeModal();
-
-    };
-
     const handleSelectChange = (selectedOption) => {
         setInputFaseValue(selectedOption.value);
     };
-
-    // const materias = [
-    //     { value: 'Lógica de Programação', label: 'Lógica de Programação' },
-    //     { value: 'Eletrônica', label: 'Eletrônica' },
-    //     { value: 'Teste de Sistemas', label: 'Teste de Sistemas' }
-    // ]
-
 
     const quantidadeDias = [
         { value: 1, label: 1 },
@@ -106,7 +79,7 @@ export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
                 <div className="modal">
                     <div>
                         <div className='modal-header'>
-                            <h2>CADASTRAR NOVA MATÉRIA</h2>
+                            <h2>ATUALIZAR MATÉRIA</h2>
                             <img className='modal-close-icon' src={menuClose} onClick={closeModal} />
                         </div>
                         <div className='modal-content'>
@@ -114,13 +87,6 @@ export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
                             <div className='modal-label'>
                                 <a>NOME:</a>
                                 <input placeholder='Ex: Lógica de Programação' value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" />
-                            </div>
-                            <div className='modal-label-professor'>
-                                <a>CADASTRAR FASE:</a>
-                                <div className='modal-professor-grid'>
-                                    <input placeholder='Ex: Primeira Fase' type="text" value={novaFase} onChange={(e) => setNovaFase(e.target.value)} />
-                                    <button className='add-fase' onClick={registerFase}>CADASTRAR</button>
-                                </div>
                             </div>
                             <div className='modal-label-professor'>
                                 <a>FASES:</a>
@@ -139,13 +105,12 @@ export default function CadastrarMateriaComponent({ isModalOpen, closeModal }) {
                                 />
                             </div>
                             <div>
-                                <button className='register-button-confirm' onClick={registerMat}>CADASTRAR</button>
+                                <button className='update-button-confirm' onClick={registerMat}>ATUALIZAR</button>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
         </>
-
     )
 }

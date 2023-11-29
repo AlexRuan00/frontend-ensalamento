@@ -1,22 +1,102 @@
 .quadro {
     display: flex;
-    background-color: #FFFFFF;
-    width: 700px;
-    height: 500px;
-    margin: 60px;
-    border-radius: 10px;
-    border: 1px stroke #B8B8B8;
+    width: 1050px;
+    height: 400px;
+    align-self: center;
+    flex-direction: column;
+}
+
+.quadro-header {
+    display: flex;
+    width: 1048px;
+    height: 70px;
+    align-items: center;
+    background-color: #ffffff;
+    border: solid 1px #B8B8B8;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .quadro h1 {
     font-family: 'Saira Condensed';
     font-size: 30px;
     font-weight: normal;
-    width: 100%;
-    border-bottom: 1px solid #B8B8B8;
-    height: 50px;
+    margin: 0 50px;
+}
+
+.quadro-linha {
+    display: flex;
+}
+
+.quadro-dias {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Saira Condensed';
+    width: 150px;
+    height: 30px;
+    background-color: #ffffff;
+    border: solid 1px #B8B8B8;
 }
 
 .quadro-box {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Saira Condensed';
+    width: 150px;
+    height: 200px;
+    background-color: #EEEEEE;
+    border: solid 1px #B8B8B8;
+}
+
+.quadro-box-inferior-esquerdo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Saira Condensed';
+    width: 150px;
+    height: 200px;
+    background-color: #EEEEEE;
+    border: solid 1px #B8B8B8;
+    border-bottom-left-radius: 10px;
+}
+
+.quadro-box-inferior-direito {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Saira Condensed';
+    width: 150px;
+    height: 200px;
+    background-color: #EEEEEE;
+    border: solid 1px #B8B8B8;
+    border-bottom-right-radius: 10px;
+}
+
+.quadro-box span {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.span-professor {
+    background-color: #ababab;
+    padding: 0 10px;
+    border-radius: 10px;
+    max-width: 100px;
+    word-wrap: break-word;
+}
+
+.span-materia {
+    background-color: #55BAFF;
+    color: #ffffff;
+    margin: 40px 0;
+    padding: 0 10px;
+    border-radius: 10px;
+    max-width: 100px;
 }
