@@ -13,13 +13,14 @@ import menuClose from '../assets/close-figma.png'
 
 
 
-export default function AtualizarProfessorComponent({ isModalOpen, closeModal }) {
+export default function AtualizarProfessorComponent({ isModalOpen, closeModal, idProfessor, idMateria, nome, materia, qDias, diasD }) {
 
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(nome);
     const [materias, setMateria] = useState([]);
-    const [inputMat, setInputMat] = useState(null);
+    const [inputMat, setInputMat] = useState({ value: idMateria, label: materia });
     const [diasSemana, setDiasSemana] = useState([])
-
+    const [numeroDias, setNumeroDias] = useState({ value: qDias, label: qDias })
+    const [diasSemanais, setDiasSemanais] = useState(diasD)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -29,7 +30,7 @@ export default function AtualizarProfessorComponent({ isModalOpen, closeModal })
                 console.error('Erro ao buscar dados da API:', error);
             }
         };
-
+        changeInputDays(diasSemanais);
         fetchData();
     }, []);
 
@@ -41,14 +42,14 @@ export default function AtualizarProfessorComponent({ isModalOpen, closeModal })
         setMateria(arrayMaterias)
     }
 
-    const registerProf = async () => {
+    const updateProf =  async () => {
         try {
-            const response = await axios.post('https://backend-ensalamento.onrender.com/professor', {
+            const response = await axios.put(`https://backend-ensalamento.onrender.com/professor/${idProfessor}`, {
+                id: idProfessor,
                 nome: inputValue,
                 dias: diasSemana,
-                quantidadeDias: 3,
-                idMateria: inputMat,
-
+                quantidadeDias:numeroDias.value ,
+                idMateria: inputMat.value
             });
 
             console.log('Resposta da API:', response.data);
@@ -66,11 +67,16 @@ export default function AtualizarProfessorComponent({ isModalOpen, closeModal })
     };
 
     const changeInputMat = (selectedOption) => {
-        setInputMat(selectedOption.value);
+        setInputMat(selectedOption);
+    };
+
+    const defineQDias = (selectedOption) => {
+        setNumeroDias(selectedOption);
     };
 
 
     const changeInputDays = (selectedOption) => {
+        setDiasSemanais(selectedOption)
         let arrayDays = [];
         selectedOption.forEach(e => {
             arrayDays.push(e.value);
@@ -78,9 +84,6 @@ export default function AtualizarProfessorComponent({ isModalOpen, closeModal })
         setDiasSemana(arrayDays)
     };
 
-    const handleSelectChange = (selectedOption) => {
-        setInputFaseValue(selectedOption.value);
-    };
 
 
     const dias = [
@@ -121,6 +124,7 @@ export default function AtualizarProfessorComponent({ isModalOpen, closeModal })
                                     className='professor-select'
                                     options={materias}
                                     onChange={changeInputMat}
+                                    value={inputMat}
                                 />
                             </div>
                             <div className='modal-label-professor'>
@@ -132,6 +136,7 @@ export default function AtualizarProfessorComponent({ isModalOpen, closeModal })
                                     isMulti
                                     options={dias}
                                     onChange={changeInputDays}
+                                    value={diasSemanais}
                                 />
                             </div>
                             <div className='modal-label-professor'>
@@ -139,11 +144,12 @@ export default function AtualizarProfessorComponent({ isModalOpen, closeModal })
                                 <Select
                                     className='professor-select'
                                     options={quantidadeDias}
-                                    onChange={handleSelectChange}
+                                    onChange={defineQDias}
+                                    value={numeroDias}
                                 />
                             </div>
                             <div>
-                                <button className='update-button-confirm' onClick={registerProf}>ATUALIZAR</button>
+                                <button className='update-button-confirm' onClick={updateProf}>ATUALIZAR</button>
                             </div>
                         </div>
                     </div>

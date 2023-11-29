@@ -55,7 +55,7 @@ export default function CadastrarMateria() {
                 </div>
                 
                 {dados.map(item => (
-                    <ConteudoComponent nome={item.nome_materia} id={item.id_materia} idFase={item.id_fase} entidade={'matéria'}/>
+                    <ConteudoComponent nome={item.nome_materia} id={item.id_materia} idFase={item.id_fase} dias={item.dias} entidade={'matéria'}/>
                 ))}
                 
                 <div className='register-content'>

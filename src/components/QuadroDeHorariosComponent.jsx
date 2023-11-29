@@ -1,36 +1,13 @@
 import '../styles/QuadroDeHorarioComponent.css'
 import React, { useState, useEffect } from 'react';
 
-const teste = [
-    {
-        dia: "Segunda",
-        professor: "Thayse",
-        materia: "Lógica de programação"
-    },
-    {
-        dia: "Quarta",
-        professor: "Thayse",
-        materia: "Lógica de programação"
-    },
-    {
-        dia: "Quinta",
-        professor: "Thayse",
-        materia: "Lógica de programação"
-    },
-    {
-        dia: "Terça",
-        professor: "João",
-        materia: "Eletroeletrônica"
-    }
-]
-
-const teste2 = []
+const vazio = []
 
 export default function QuadroDeHorariosComponent(props) {
     const [resultado, setResultado] = useState([]);
     
     const DiaComponent = ({ dia }) => {
-        let resultadoDoDia = teste2.find(item => item.dia === dia);
+        let resultadoDoDia = vazio.find(item => item.dia === dia);
         if (props.props && props.props.length > 0){
              resultadoDoDia = props.props.find(item => item.dia === dia);
         } 

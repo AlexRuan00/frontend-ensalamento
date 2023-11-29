@@ -12,11 +12,11 @@ import '../styles/CadastrarMateriaComponent.css'
 
 import menuClose from '../assets/close-figma.png'
 
-export default function AtualizarMateriaComponent({ isModalOpen, closeModal }) {
+export default function AtualizarMateriaComponent({ isModalOpen, closeModal, idMateria, nome, dias, idFase, nomeFase}) {
 
-    const [inputValue, setInputValue] = useState('');
-    const [inputFaseValue, setInputFaseValue] = useState(null);
-    const [novaFase, setNovaFase] = useState('');
+    const [inputValue, setInputValue] = useState(nome);
+    const [inputFaseValue, setInputFaseValue] = useState({ value:idFase, label:nomeFase});
+    const [valorDias, setValorDias] = useState({ value: dias, label: dias });
     const [fases, setFases] = useState([]);
 
     useEffect(() => {
@@ -32,25 +32,38 @@ export default function AtualizarMateriaComponent({ isModalOpen, closeModal }) {
         fetchData();
     }, []);
 
+    const setDias = (selectedOption) => {
+        setValorDias(selectedOption)
+    }
+
     const distribuirFases = (fasesApi) => {
         let arrayFases = []
         fasesApi.forEach(e => {
+            // if(idFase == e.id_fase){
+            //     setInputFaseValue({ value: e.id_fase, label: e.nome_fase })
+            // }
             arrayFases.push({ value: e.id_fase, label: e.nome_fase })
         });
         setFases(arrayFases)
     }
 
-    const registerMat = async () => {
+    const updateMat = async () => {
+        console.log({ id: idMateria,
+            nome: inputValue,
+            idFase: inputFaseValue.value,
+            dias: valorDias.value})
         try {
-            const response = await axios.post('https://backend-ensalamento.onrender.com/disciplina', {
+            const response = await axios.put(`https://backend-ensalamento.onrender.com/disciplina/${idMateria}`, {
+                id: idMateria,
                 nome: inputValue,
-                idFase: inputFaseValue
+                idFase: inputFaseValue.value,
+                dias: valorDias.value
             });
 
             console.log('Resposta da API:', response.data);
 
 
-            setInputValue('');
+            //setInputValue('');
 
         } catch (error) {
 
@@ -62,7 +75,8 @@ export default function AtualizarMateriaComponent({ isModalOpen, closeModal }) {
     };
 
     const handleSelectChange = (selectedOption) => {
-        setInputFaseValue(selectedOption.value);
+
+        setInputFaseValue(selectedOption);
     };
 
     const quantidadeDias = [
@@ -94,6 +108,7 @@ export default function AtualizarMateriaComponent({ isModalOpen, closeModal }) {
                                     className='professor-select'
                                     options={fases}
                                     onChange={handleSelectChange}
+                                    value={inputFaseValue}
                                 />
                             </div>
                             <div className='modal-label-professor'>
@@ -101,11 +116,12 @@ export default function AtualizarMateriaComponent({ isModalOpen, closeModal }) {
                                 <Select
                                     className='professor-select'
                                     options={quantidadeDias}
-                                    onChange={handleSelectChange}
+                                    onChange={setDias}
+                                    value={valorDias}
                                 />
                             </div>
                             <div>
-                                <button className='update-button-confirm' onClick={registerMat}>ATUALIZAR</button>
+                                <button className='update-button-confirm' onClick={updateMat}>ATUALIZAR</button>
                             </div>
                         </div>
                     </div>

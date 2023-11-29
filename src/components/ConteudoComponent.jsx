@@ -9,7 +9,7 @@ import deleteIcon from '../assets/delete.png';
 import AtualizarMateriaComponent from './AtualizarMateriaComponent';
 import AtualizarProfessorComponent from './AtualizarProfessorComponent';
 
-export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisponiveis, materia }) {
+export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisponiveis, materia, dias, idMateria, quantidadeDias }) {
     const [isOpen, setIsOpen] = useState(false);
     const [entity, setEntity] = useState(false);
     const [fase, setFase] = useState('');
@@ -75,6 +75,13 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
 
     };
 
+    const retornarDias = (arrayDias) => {
+        let arrayRetorno = []
+        arrayDias.forEach(e => {
+            arrayRetorno.push({ value: e, label: e })
+        });
+        return arrayRetorno;
+    }
 
 
     return (
@@ -98,12 +105,12 @@ export default function ConteudoComponent({ nome, id, entidade, idFase, diasDisp
             <div className='register-content'>
                 {
                     isModalOpen && !entity && (
-                        <AtualizarMateriaComponent isModalOpen={isModalOpen} closeModal={closeModal} />
+                        <AtualizarMateriaComponent isModalOpen={isModalOpen} closeModal={closeModal} idMateria={id} nome={nome} dias={dias} idFase={idFase} nomeFase={fase}/>
                     )
                 }
                 {
                     isModalOpen && entity && (
-                        <AtualizarProfessorComponent isModalOpen={isModalOpen} closeModal={closeModal} />
+                        <AtualizarProfessorComponent isModalOpen={isModalOpen} closeModal={closeModal} idProfessor={id} idMateria={idMateria} nome={nome} materia={materia} qDias={quantidadeDias} diasD={retornarDias(diasDisponiveis)} />
                     )
                 }
             </div>
